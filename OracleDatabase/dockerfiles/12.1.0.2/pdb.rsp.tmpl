@@ -1,0 +1,97 @@
+##############################################################################
+##                                                                          ##
+##                            DBCA response file                            ##
+##                            ------------------                            ##
+## Copyright   1998, 2014, Oracle Corporation. All Rights Reserved.         ##
+##                                                                          ##
+## Specify values for the variables listed below to customize Oracle        ##
+## Database Configuration installation.                                     ##
+##                                                                          ##
+## Each variable is associated with a comment. The comment identifies the   ##
+## variable type.                                                           ##
+##                                                                          ##
+## Please specify the values in the following format :                      ##
+##          Type       :  Example                                           ##
+##          String     :  "<value>"                                         ##
+##          Boolean    :  True or False                                     ##
+##          Number     :  <numeric value>                                   ##
+##          StringList :  {"<value1>","<value2>"}                           ##
+##                                                                          ##
+## Examples :                                                               ##
+##     1. dbca -progress_only -responseFile <response file>                 ##
+##        Display a progress bar depicting progress of database creation    ##
+##        process.                                                          ##
+##                                                                          ##
+##     2. dbca -silent -responseFile <response file>                        ##
+##        Creates database silently. No user interface is displayed.        ##
+##                                                                          ##
+##     3. dbca -silent -createDatabase -cloneTemplate                       ##
+##			 -responseFile <response file>                      ##
+##        Creates database silently with clone template. The template in    ##
+##	  responsefile is a clone template. 			            ##
+##                                                                          ##
+##     4. dbca -silent -deleteDatabase -responseFile <response file>        ##
+##        Deletes database silently.                                        ##
+##############################################################################
+
+#-----------------------------------------------------------------------------
+# GENERAL section is required for all types of database creations.
+#-----------------------------------------------------------------------------
+[GENERAL]
+
+#-----------------------------------------------------------------------------
+# Name          : RESPONSEFILE_VERSION
+# Datatype      : String
+# Description   : Version of the database to create
+# Valid values  : "12.1.0"
+# Default value : None
+# Mandatory     : Yes
+#-----------------------------------------------------------------------------
+RESPONSEFILE_VERSION = "12.1.0"
+
+#-----------------------------------------------------------------------------
+# Name          : OPERATION_TYPE
+# Datatype      : String
+# Description   : Type of operation
+# Valid values  : "createDatabase" \ "createTemplateFromDB" \ "createCloneTemplate" \ "deleteDatabase" \ "configureDatabase" \ "addInstance" (RAC-only) \ "deleteInstance" (RAC-only) \ "createPluggableDatabase" \ "unplugDatabase" \ "deletePluggableDatabase" \ "configurePluggableDatabase"
+# Default value : None
+# Mandatory     : Yes
+#-----------------------------------------------------------------------------
+OPERATION_TYPE = "createPluggableDatabase"
+
+#-----------------------*** End of GENERAL section ***------------------------
+
+#----------------------------------------------------------------------------------
+# CREATEPLUGGABLEDATABASE section is used when OPERATION_TYPE is defined as "createPluggableDatabase". 
+#----------------------------------------------------------------------------------
+[CREATEPLUGGABLEDATABASE]
+#----------------------------------------------------------------------------------
+# Name          : SOURCEDB
+# Datatype      : String
+# Description   : The source database is the SID 
+#		  This database must be local and on the same ORACLE_HOME.
+# Default value : none
+# Mandatory     : YES
+#-----------------------------------------------------------------------------
+SOURCEDB = "###ORACLE_SID###"
+
+#----------------------------------------------------------------------------------
+# Name          : PDBNAME
+# Datatype      : String
+# Description   : The name of new pluggable database 
+#		  This pdb name must not be same as sourcedb name.
+# Default value : none
+# Mandatory     : YES
+#-----------------------------------------------------------------------------
+PDBNAME = "###ORACLE_PDB###"
+
+#----------------------------------------------------------------------------------
+# Name          : PDBADMINPASSWORD
+# Datatype      : String
+# Description   : PDB Administrator user password
+# Default value : None
+# Mandatory     : Mandatory only when creating new DEFAULT PDB
+#-----------------------------------------------------------------------------
+PDBADMINPASSWORD = "###ORACLE_PWD###"
+
+#-----------------------*** End of createPluggableDatabase section ***------------------------

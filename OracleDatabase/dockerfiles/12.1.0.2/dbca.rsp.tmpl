@@ -115,27 +115,7 @@ CREATEASCONTAINERDATABASE = "true"
 # Default value : 0
 # Mandatory     : No
 #-----------------------------------------------------------------------------
-NUMBEROFPDBS = 1
-
-#-----------------------------------------------------------------------------
-# Name          : PDBNAME 
-# Datatype      : String
-# Description   : Specify the pdbname/pdbanme prefix if one or more pdb need to be created
-# Valid values  : Check Oracle12c Administrator's Guide
-# Default value : None
-# Mandatory     : No
-#-----------------------------------------------------------------------------
-PDBNAME = "###ORACLE_PDB###"
-
-#-----------------------------------------------------------------------------
-# Name          : PDBADMINPASSWORD
-# Datatype      : String
-# Description   : PDB Administrator user password
-# Valid values  : Check Oracle12c Administrator's Guide
-# Default value : None
-# Mandatory     : No
-#-----------------------------------------------------------------------------
-PDBADMINPASSWORD = "###ORACLE_PWD###"
+NUMBEROFPDBS = 0
 
 #-----------------------------------------------------------------------------
 # Name          : TEMPLATENAME
@@ -184,7 +164,7 @@ SYSTEMPASSWORD = "###ORACLE_PWD###"
 # Default value : NONE
 # Mandatory     : No
 #-----------------------------------------------------------------------------
-EMCONFIGURATION = "DBEXPRESS"
+#EMCONFIGURATION = "DBEXPRESS"
 
 
 #-----------------------------------------------------------------------------
@@ -196,7 +176,7 @@ EMCONFIGURATION = "DBEXPRESS"
 # Mandatory     : No, will be picked up from DBEXPRESS_HTTPS_PORT env variable
 #                 or auto generates a free port between 5500 and 5599
 #-----------------------------------------------------------------------------
-EMEXPRESSPORT = "5500"
+#EMEXPRESSPORT = "5500"
 
 #-----------------------------------------------------------------------------
 # Name          : DBSNMPPASSWORD

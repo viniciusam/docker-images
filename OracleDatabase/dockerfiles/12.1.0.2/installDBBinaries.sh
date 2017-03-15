@@ -54,6 +54,7 @@ rm $INSTALL_FILE_2    && \
 $INSTALL_DIR/database/runInstaller -silent -force -waitforcompletion -responsefile $INSTALL_DIR/$INSTALL_RSP -ignoresysprereqs -ignoreprereq && \
 rm -rf $INSTALL_DIR/database && \
 ln -s $ORACLE_BASE/$PWD_FILE $HOME/ && \
+ln -s $ORACLE_BASE/$PDB_FILE $HOME/ && \
 echo "DEDICATED_THROUGH_BROKER_LISTENER=ON"  >> $ORACLE_HOME/network/admin/listener.ora && \
 echo "DIAG_ADR_ENABLED = off"  >> $ORACLE_HOME/network/admin/listener.ora;
 
