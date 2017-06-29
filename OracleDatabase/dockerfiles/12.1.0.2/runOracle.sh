@@ -131,29 +131,23 @@ export ORACLE_PDB=${ORACLE_PDB:-ORCLPDB1}
 # Default for ORACLE CHARACTERSET
 export ORACLE_CHARACTERSET=${ORACLE_CHARACTERSET:-AL32UTF8}
 
+# Start database
+$ORACLE_BASE/$START_FILE;
+
 # Check whether database already exists
-if [ -d $ORACLE_BASE/oradata/$ORACLE_SID ]; then
+if [ -d $PDB_BASE_DIR/$ORACLE_PDB ]; then
+
    symLinkFiles;
    
    # Make sure audit file destination exists
    if [ ! -d $ORACLE_BASE/admin/$ORACLE_SID/adump ]; then
       mkdir -p $ORACLE_BASE/admin/$ORACLE_SID/adump
    fi;
-   
-   # Start database
-   $ORACLE_BASE/$START_FILE;
-   
+      
 else
-   # Remove database config files, if they exist
-   rm -f $ORACLE_HOME/dbs/spfile$ORACLE_SID.ora
-   rm -f $ORACLE_HOME/dbs/orapw$ORACLE_SID
-   rm -f $ORACLE_HOME/network/admin/tnsnames.ora
    
-   # Create database
-   $ORACLE_BASE/$CREATE_DB_FILE $ORACLE_SID $ORACLE_PDB $ORACLE_PWD;
-   
-   # Move database operational files to oradata
-   moveFiles;
+   $ORACLE_BASE/$CREATE_PDB_FILE
+
 fi;
 
 # Check whether database is up and running
